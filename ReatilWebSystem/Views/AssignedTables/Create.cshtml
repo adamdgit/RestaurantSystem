@@ -1,0 +1,101 @@
+﻿@model BitByByte.Models.AssignedTable
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Assign Tables to Reservations</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4  text-light">
+            <form asp-action="Create">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="SittingId" class="control-label">Sitting</label>
+                    <select asp-for="SittingId" class="form-control" asp-items="ViewBag.SittingId"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="TableId" class="control-label">Table</label>
+                    <select asp-for="TableId" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <label asp-for="ReservationId" class="control-label">Reservation By Name</label>
+                    <select asp-for="ReservationId" class="form-control"></select>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Create" class="btn btn-primary" />
+                </div>
+            </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script defer>
+
+        const list = document.getElementById("SittingId");
+
+        function populateOptions(data, elementId) {
+            const element = document.getElementById(elementId);
+            element.innerHTML = ""; // Clear existing options
+
+            // Loop through the data and create option elements
+            data.forEach((item) => {
+                const option = document.createElement("option");
+                option.value = item.value;
+                option.text = item.text;
+                element.appendChild(option);
+            });
+        }
+
+        async function getAvailableTables(id) {
+            try {
+            const data = await fetch(`https://localhost:7149/AssignedTables/GetAvailableTablesBySittingId/?sittingId=${id}`, {
+                    method: "get",
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        console.log(data)
+                    populateOptions(data, 'TableId');
+                    })
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+
+        async function getReservations(id) {
+            try {
+            const data = await fetch(`https://localhost:7149/AssignedTables/GetReservationsBySittingID/?sittingId=${id}`, {
+                method: "get",
+            })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                    populateOptions(data, 'ReservationId');
+            })
+            }
+            catch (err) {
+                console.log(err)
+            }
+        }
+
+        // Load reservations based on default value
+        getReservations(list.value)
+        getAvailableTables(list.value)
+
+        list.addEventListener("change", (e) => {
+            console.log(e.target.value)
+            getReservations(e.target.value)
+            getAvailableTables(e.target.value)
+        })
+
+</script>

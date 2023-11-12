@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Sitting>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="d-flex gap-4 align-items-center mb-4">
+    <h1>Sittings</h1>
+    <a asp-action="Create" class="btn btn-primary">Create New Sitting</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Type)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.EndTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CurrentCapacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Capacity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Status)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CurrentCapacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Capacity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.SittingId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.SittingId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.SittingId">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

@@ -1,0 +1,93 @@
+﻿@{
+
+}
+
+<h1>Generate Reports</h1>
+
+<div class="container mt-4">
+    <p class="text-light">Reservations by Date:</p>
+    <div class="searchBar gap-4">
+        <input id="resDate" type="Date" class="form-control" value=@DateTime.Now.ToString("yyyy-MM-dd") />
+        <button class="btn btn-primary my-2 my-sm-0" onclick="getReservations()">Search</button>
+    </div>
+</div>
+
+<div class="container">
+    <p class="text-light">Sitting by Date:</p>
+    <div class="searchBar gap-4">
+        <input id ="sitDate" type="Date" class="form-control" value=@DateTime.Now.ToString("yyyy-MM-dd") />
+        <button class="btn btn-primary my-2 my-sm-0" onclick="getSittings()">Search</button>
+    </div>
+</div>
+
+
+<div class="container mt-4">
+    <h2>Reservations Report</h2>
+    <ul id="reservations" class="list-group gap-3"></ul>
+</div>
+
+
+<div class="container mt-4">
+    <h2>Sittings Report</h2>
+    <ul id="sittings" class="list-group gap-3"></ul>
+</div>
+
+<script>
+
+    const reservationnput = document.getElementById("resDate");
+    const sittingInput = document.getElementById("sitDate");
+
+    function populateOptions(data, elementName) {
+        const element = document.getElementById(elementName);
+        element.innerHTML = ""; // Clear existing options
+
+        // Loop through the data and create option elements
+        data.forEach((item) => {
+            const li = document.createElement("li");
+            li.className = "list-group-item"
+            li.innerHTML = item.text;
+            element.appendChild(li);
+        });
+    }
+
+    // GET Reservations
+    async function getReservations() {
+
+        let date = reservationnput.value;
+
+        try {
+            const data = await fetch(`https://localhost:7149/Reports/GetReservationByDate/?date=${date}`, {
+                method: "get",
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    populateOptions(data, "reservations");
+                })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    // GET Sittings
+    async function getSittings() {
+
+        let date = sittingInput.value;
+
+        try {
+            const data = await fetch(`https://localhost:7149/Reports/GetSittingsByDate/?date=${date}`, {
+                method: "get",
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    populateOptions(data, "sittings");
+                })
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+</script>

@@ -1,0 +1,31 @@
+﻿@model ChangePassword
+@{
+}
+<h1>Change Password</h1>
+<form method="post">
+    <div class="border p-3 mt-4 text-light">
+        <div class="mb-2">
+            <div class="mb3">
+                <label>Current Password</label>
+                <input type="password" asp-for="CurrentPassword" class="form-control" />
+                <span asp-validation-for="CurrentPassword" class="text-danger"></span>
+            </div>
+            <div class="mb3">
+                <label>New Password</label>
+                <input type="password" asp-for="NewPassword" class="form-control" />
+                <span asp-validation-for="NewPassword" class="text-danger"></span>
+            </div>
+            <div class="mb3">
+                <label>Confirm Password</label>
+                <input type="password" asp-for="PasswordConfirm" class="form-control" />
+                <span asp-validation-for="PasswordConfirm" class="text-danger"></span>
+            </div>
+            <br />
+            <button type="submit" class="btn btn-primary">Change Password</button>
+            <a asp-controller="Home" asp-action="Index" class="btn btn-primary">Back To Home</a>
+        </div>
+</form>
+@*
+@section Scripts{
+    <partial name="_ValidationscriptsPartial" />
+}*@

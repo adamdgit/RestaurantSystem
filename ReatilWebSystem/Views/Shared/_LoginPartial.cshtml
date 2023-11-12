@@ -1,0 +1,77 @@
+﻿@using Microsoft.AspNetCore.Identity
+@using BitByByte.Data;
+
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    var user = await UserManager.GetUserAsync(User);
+}
+
+@functions {
+    // Define a method to check if a route matches the current route
+    public bool IsRouteActive(string controller)
+    {
+        var currentController = ViewContext.RouteData.Values["controller"] as string;
+        return string.Equals(currentController, controller, StringComparison.OrdinalIgnoreCase);
+    }
+
+}
+ 
+
+<ul class="navbar-nav nav-pills flex-grow-1">
+    <li class="nav-item d-flex">
+        <a class="nav-link text-dark" asp-controller="home" asp-action="menu">Menu</a>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-datrk" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+            Tools
+        </a>
+        <div class="dropdown-menu dropdown-menu-lg-end shadow-sm">
+                <a class="dropdown-item @(IsRouteActive("Reservations") ? "active" : "")" asp-area="" asp-controller="Reservations" asp-action="Index">Reservations</a>
+            @if (User.IsInRole("admin"))
+            {
+                <a class="dropdown-item @(IsRouteActive("Sittings") ? "active" : "")" asp-area="" asp-controller="Sittings" asp-action="Index">Sittings</a>
+                <a class="dropdown-item @(IsRouteActive("Areas") ? "active" : "")" asp-area="" asp-controller="Areas" asp-action="Index">Areas</a>
+                <a class="dropdown-item @(IsRouteActive("TableInfoes") ? "active" : "")" asp-area="" asp-controller="TableInfoes" asp-action="Index">Tables</a>
+                <a class="dropdown-item @(IsRouteActive("AssignedTables") ? "active" : "")" asp-area="" asp-controller="AssignedTables" asp-action="Index">Table Assignments</a>
+                <a class="dropdown-item @(IsRouteActive("Reports") ? "active" : "")" asp-area="" asp-controller="Reports" asp-action="Index">Reports</a>
+            }
+        </div>
+    </li>
+</ul>
+
+<ul class="navbar-nav">
+
+    @if (user == null)
+    {
+        <li class="nav-item d-flex">
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Login">Login</a>
+            <a class="nav-link text-dark" asp-area="" asp-controller="User" asp-action="Register">Register</a>
+        </li>
+    }
+    @if (user != null && user.EmailConfirmed)
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                @if (user.ProfileUrl != "none")
+                {
+                    <img class="profilePicture me-2" src=@user.ProfileUrl alt="users profile picture" />
+                }
+                @user.Email
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-lg-end shadow-sm">
+                <a class="dropdown-item" asp-controller="User" asp-action="Edit">My Account</a>
+                <a class="dropdown-item" asp-controller="User" asp-action="Update">Forgot Password</a>
+                <a class="dropdown-item" asp-area="" asp-controller="User" asp-action="Logout">Logout</a>
+                @if (User.IsInRole("admin"))
+                {
+                    <div class="dropdown-divider"></div>
+                    <h3 class="dropdown-header">Admin Tools</h3>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" asp-controller="User" asp-action="UserList">Edit Users</a>
+                }
+            </div>
+        </li>
+    }
+</ul>

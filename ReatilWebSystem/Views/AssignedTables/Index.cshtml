@@ -1,0 +1,62 @@
+﻿@model IEnumerable<BitByByte.Models.AssignedTable>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="d-flex gap-4 align-items-center mb-4">
+    <h1>Assigned Tables</h1>
+    <a asp-action="Create" class="btn btn-primary">Assign a table</a>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Table Name
+            </th>
+            <th>
+                ID
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Email
+            </th>
+            <th>
+                Sitting Details
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model) {
+        <tr>
+            <td>
+                @($"{item.TableInfo.Name}")
+            </td>
+            <td>
+                @($"{item.Reservation.ReservationId}")
+            </td>
+            <td>
+                @($"{item.Reservation.FirstName} {item.Reservation.LastName}")
+            </td>
+            <td>
+                @($"{item.Reservation.Email}")
+            </td>
+            <td>
+                @($"{item.Sitting.Type} - {item.Reservation.StartTime}")
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.AssignedTableId">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.AssignedTableId">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.AssignedTableId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
