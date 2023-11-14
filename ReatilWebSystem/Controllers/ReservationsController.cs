@@ -14,14 +14,12 @@ namespace BitByByte.Controllers
     {
         private readonly RestaurantDbContext _context;
         private IWebHostEnvironment _env;
-        private readonly IUserService _authService;
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public ReservationsController(RestaurantDbContext context, IWebHostEnvironment env, IUserService authService, UserManager<ApplicationUser> userManager)
+        public ReservationsController(RestaurantDbContext context, IWebHostEnvironment env, UserManager<ApplicationUser> userManager)
         {
             _context = context; 
             _env = env;
-            _authService = authService;
             _userManager = userManager;
         }
 
@@ -268,7 +266,7 @@ namespace BitByByte.Controllers
             return View(reservation);
         }
 
-        // GET: Reservations/Delete/5
+        // GET: Reservations/Delete/:ID
         [Authorize(Roles = "admin, staff")]
         public async Task<IActionResult> Delete(int? id)
         {
@@ -288,7 +286,7 @@ namespace BitByByte.Controllers
             return View(reservation);
         }
 
-        // POST: Reservations/Delete/5
+        // POST: Reservations/Delete/:ID
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)

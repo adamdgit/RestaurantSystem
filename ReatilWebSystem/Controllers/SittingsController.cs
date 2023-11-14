@@ -12,6 +12,7 @@ using System.Data;
 
 namespace BitByByte.Controllers
 {
+    // Sittings controller and methods are only accessible to admins
     [Authorize(Roles = "admin")]
     public class SittingsController : Controller
     {
@@ -22,6 +23,7 @@ namespace BitByByte.Controllers
             _context = context;
         }
 
+        // Gets sitting status list from enum, reused in many methods
         public IActionResult getViewData()
         {
             ViewData["SittingStatusList"] = Enum.GetValues(typeof(sittingStatus))
@@ -51,10 +53,11 @@ namespace BitByByte.Controllers
 
         }
 
-        // GET sittings by user query
+        // API to GET sittings by user query
         [HttpGet]
         public async Task<IActionResult> GetAvailableSittings()
         {
+            // get query from url
             string query = HttpContext.Request.Query["query"];
 
             if (query == null)
@@ -76,7 +79,7 @@ namespace BitByByte.Controllers
             return Json(selectListItems);
         }
 
-        // GET: Sittings/Details/5
+        // GET: Sittings/Details/:ID
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null || _context.Sitting == null)

@@ -256,8 +256,10 @@ namespace BitByByte.Controllers
                 // if File is uploaded, save to uploads folder on server
                 if (file != null)
                 {
+                    // only allow specific file types
                     var ext = Path.GetExtension(file.FileName);
                     var allowedExtensions = new string[] { ".jpg", ".png", ".webp", ".jpeg" };
+
                     // if file type is not supported, return model error
                     if (!allowedExtensions.Contains(ext))
                     {
@@ -272,10 +274,11 @@ namespace BitByByte.Controllers
                         return View(userDetails);
                     }
 
-                    Console.WriteLine("----file uploaded---");
+                    // generate a unique filename, to prevent duplicates
                     string uniqueFileName = Guid.NewGuid() + "_" + file.FileName;
                     string filePath = Path.Combine(_env.WebRootPath, "uploads", uniqueFileName);
 
+                    // copy data steam to uploads folder
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await file.CopyToAsync(stream);
@@ -287,19 +290,23 @@ namespace BitByByte.Controllers
                     // default profileurl for new accounts is "none" so we don't have an old image to delete for new accounts
                     if (user.ProfileUrl != "none")
                     {
-                        // get old profile picture and delete it
-                        string oldProfilePath = Path.Combine(_env.WebRootPath, "uploads", user.ProfileUrl);
-                        System.IO.File.Delete(oldProfilePath);
+                        // Check if old profile picture exists, and delete it
+                        string oldProfilePath = Path.Combine(_env.WebRootPath, "uploads", userDetails.ProfileUrl);
+                        if (System.IO.File.Exists(oldProfilePath))
+                        {
+                            System.IO.File.Delete(oldProfilePath);
+                        }
+                        else
+                        {
+                            Console.WriteLine("File does not exist.");
+                        }
                     }
                 }
-
                 // update user details
                 var result = await _authService.EditUserDetails(userDetails);
 
-
                 TempData["msg"] = result.Message;
                 return View(userDetails);
-                
             }
 
             return View(userDetails);
