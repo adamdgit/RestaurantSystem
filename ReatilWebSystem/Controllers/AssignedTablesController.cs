@@ -28,7 +28,9 @@ namespace BitByByte.Controllers
                 .Include(a => a.TableInfo)
                 .ToListAsync();
 
-            return View(assignedTables);
+            ViewData["assignedTables"] = assignedTables;
+
+            return View();
         }
 
         // GET: AssignedTables/Details/5

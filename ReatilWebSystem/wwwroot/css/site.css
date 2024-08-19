@@ -19,6 +19,10 @@ html {
 
 body {}
 
+button {
+    padding: 0; border:0;
+}
+
 .bg {
   background: url(../Images/bg.jpg);
   background-repeat: no-repeat;

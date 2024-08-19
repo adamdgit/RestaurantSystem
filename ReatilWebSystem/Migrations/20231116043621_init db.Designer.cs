@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BitByByte.Migrations
 {
     [DbContext(typeof(RestaurantDbContext))]
-    [Migration("20231106031426_inital db")]
-    partial class initaldb
+    [Migration("20231116043621_init db")]
+    partial class initdb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -104,6 +104,50 @@ namespace BitByByte.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "151d1261-2505-44e4-90fe-3957d31e9a2e",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "581b68d2-3545-46e6-b198-23f3e8277a7f",
+                            Email = "admin@beanscene.com",
+                            EmailConfirmed = true,
+                            FirstName = "Test",
+                            LastName = "Admin",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@BEANSCENE.COM",
+                            NormalizedUserName = "ADMIN@BEANSCENE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDxd1Fq7ZI8CN2g3l7pgJKXDN3EiVfeflqEZqvp3dt6AyrWaYMn0+ox2qfNcLwCVfw==",
+                            PhoneNumber = "12345678",
+                            PhoneNumberConfirmed = false,
+                            ProfileUrl = "none",
+                            Role = "admin",
+                            SecurityStamp = "e9ae5f1b-d63a-457e-8dd7-87790135f9dc",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@beanscene.com"
+                        },
+                        new
+                        {
+                            Id = "da815a98-b0c1-4e33-b2aa-6c0bd7b7ded4",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1c322422-675b-461d-b0d6-570f63917e5c",
+                            Email = "staff@beanscene.com",
+                            EmailConfirmed = true,
+                            FirstName = "Test",
+                            LastName = "Staff",
+                            LockoutEnabled = false,
+                            NormalizedEmail = "STAFF@BEANSCENE.COM",
+                            NormalizedUserName = "STAFF@BEANSCENE.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEDEuZKXJrWVv5EJ7ICAbuifNZWIEp11Z51sVi+eI0b/2LBYv11m23mMcdK/4v3myKg==",
+                            PhoneNumber = "12345679",
+                            PhoneNumberConfirmed = false,
+                            ProfileUrl = "none",
+                            Role = "staff",
+                            SecurityStamp = "1036a5e2-0675-4627-9b97-131e3d4f8739",
+                            TwoFactorEnabled = false,
+                            UserName = "staff@beanscene.com"
+                        });
                 });
 
             modelBuilder.Entity("BitByByte.Models.Area", b =>
@@ -125,6 +169,26 @@ namespace BitByByte.Migrations
                     b.HasKey("AreaId");
 
                     b.ToTable("Area");
+
+                    b.HasData(
+                        new
+                        {
+                            AreaId = 1,
+                            Description = "The primary dining area with a cozy ambiance.",
+                            Name = "Main"
+                        },
+                        new
+                        {
+                            AreaId = 2,
+                            Description = "A delightful outdoor seating area, surrounded by lush trees.",
+                            Name = "Outdoor"
+                        },
+                        new
+                        {
+                            AreaId = 3,
+                            Description = "An elevated balcony space with a scenic outlook.",
+                            Name = "Balcony"
+                        });
                 });
 
             modelBuilder.Entity("BitByByte.Models.AssignedTable", b =>
@@ -267,6 +331,248 @@ namespace BitByByte.Migrations
                     b.HasIndex("AreaId");
 
                     b.ToTable("TableInfo");
+
+                    b.HasData(
+                        new
+                        {
+                            TableId = 1,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 1",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 2,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 2",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 3,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 3",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 4,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 4",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 5,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 5",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 6,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 6",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 7,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 7",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 8,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 8",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 9,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 9",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 10,
+                            AreaId = 1,
+                            Availability = "Available",
+                            Name = "Main 10",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 11,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 1",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 12,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 2",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 13,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 3",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 14,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 4",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 15,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 5",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 16,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 6",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 17,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 7",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 18,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 8",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 19,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 9",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 20,
+                            AreaId = 2,
+                            Availability = "Available",
+                            Name = "Outdoor 10",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 21,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 1",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 22,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 2",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 23,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 3",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 24,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 4",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 25,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 5",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 26,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 6",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 27,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 7",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 28,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 8",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 29,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 9",
+                            Seats = 2
+                        },
+                        new
+                        {
+                            TableId = 30,
+                            AreaId = 3,
+                            Availability = "Available",
+                            Name = "Balcony 10",
+                            Seats = 2
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -294,6 +600,26 @@ namespace BitByByte.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "1",
+                            Name = "admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = "2",
+                            Name = "staff",
+                            NormalizedName = "STAFF"
+                        },
+                        new
+                        {
+                            Id = "3",
+                            Name = "user",
+                            NormalizedName = "USER"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -381,6 +707,18 @@ namespace BitByByte.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "151d1261-2505-44e4-90fe-3957d31e9a2e",
+                            RoleId = "1"
+                        },
+                        new
+                        {
+                            UserId = "da815a98-b0c1-4e33-b2aa-6c0bd7b7ded4",
+                            RoleId = "2"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>

@@ -3,10 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
 namespace BitByByte.Migrations
 {
     /// <inheritdoc />
-    public partial class initaldb : Migration
+    public partial class initdb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -274,6 +276,81 @@ namespace BitByByte.Migrations
                         principalTable: "TableInfo",
                         principalColumn: "TableId",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Area",
+                columns: new[] { "AreaId", "Description", "Name" },
+                values: new object[,]
+                {
+                    { 1, "The primary dining area with a cozy ambiance.", "Main" },
+                    { 2, "A delightful outdoor seating area, surrounded by lush trees.", "Outdoor" },
+                    { 3, "An elevated balcony space with a scenic outlook.", "Balcony" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[,]
+                {
+                    { "1", null, "admin", "ADMIN" },
+                    { "2", null, "staff", "STAFF" },
+                    { "3", null, "user", "USER" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "FirstName", "LastName", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "ProfileUrl", "Role", "SecurityStamp", "TwoFactorEnabled", "UserName" },
+                values: new object[,]
+                {
+                    { "151d1261-2505-44e4-90fe-3957d31e9a2e", 0, "581b68d2-3545-46e6-b198-23f3e8277a7f", "admin@beanscene.com", true, "Test", "Admin", false, null, "ADMIN@BEANSCENE.COM", "ADMIN@BEANSCENE.COM", "AQAAAAIAAYagAAAAEDxd1Fq7ZI8CN2g3l7pgJKXDN3EiVfeflqEZqvp3dt6AyrWaYMn0+ox2qfNcLwCVfw==", "12345678", false, "none", "admin", "e9ae5f1b-d63a-457e-8dd7-87790135f9dc", false, "admin@beanscene.com" },
+                    { "da815a98-b0c1-4e33-b2aa-6c0bd7b7ded4", 0, "1c322422-675b-461d-b0d6-570f63917e5c", "staff@beanscene.com", true, "Test", "Staff", false, null, "STAFF@BEANSCENE.COM", "STAFF@BEANSCENE.COM", "AQAAAAIAAYagAAAAEDEuZKXJrWVv5EJ7ICAbuifNZWIEp11Z51sVi+eI0b/2LBYv11m23mMcdK/4v3myKg==", "12345679", false, "none", "staff", "1036a5e2-0675-4627-9b97-131e3d4f8739", false, "staff@beanscene.com" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[,]
+                {
+                    { "1", "151d1261-2505-44e4-90fe-3957d31e9a2e" },
+                    { "2", "da815a98-b0c1-4e33-b2aa-6c0bd7b7ded4" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "TableInfo",
+                columns: new[] { "TableId", "AreaId", "Availability", "Name", "Seats" },
+                values: new object[,]
+                {
+                    { 1, 1, "Available", "Main 1", 2 },
+                    { 2, 1, "Available", "Main 2", 2 },
+                    { 3, 1, "Available", "Main 3", 2 },
+                    { 4, 1, "Available", "Main 4", 2 },
+                    { 5, 1, "Available", "Main 5", 2 },
+                    { 6, 1, "Available", "Main 6", 2 },
+                    { 7, 1, "Available", "Main 7", 2 },
+                    { 8, 1, "Available", "Main 8", 2 },
+                    { 9, 1, "Available", "Main 9", 2 },
+                    { 10, 1, "Available", "Main 10", 2 },
+                    { 11, 2, "Available", "Outdoor 1", 2 },
+                    { 12, 2, "Available", "Outdoor 2", 2 },
+                    { 13, 2, "Available", "Outdoor 3", 2 },
+                    { 14, 2, "Available", "Outdoor 4", 2 },
+                    { 15, 2, "Available", "Outdoor 5", 2 },
+                    { 16, 2, "Available", "Outdoor 6", 2 },
+                    { 17, 2, "Available", "Outdoor 7", 2 },
+                    { 18, 2, "Available", "Outdoor 8", 2 },
+                    { 19, 2, "Available", "Outdoor 9", 2 },
+                    { 20, 2, "Available", "Outdoor 10", 2 },
+                    { 21, 3, "Available", "Balcony 1", 2 },
+                    { 22, 3, "Available", "Balcony 2", 2 },
+                    { 23, 3, "Available", "Balcony 3", 2 },
+                    { 24, 3, "Available", "Balcony 4", 2 },
+                    { 25, 3, "Available", "Balcony 5", 2 },
+                    { 26, 3, "Available", "Balcony 6", 2 },
+                    { 27, 3, "Available", "Balcony 7", 2 },
+                    { 28, 3, "Available", "Balcony 8", 2 },
+                    { 29, 3, "Available", "Balcony 9", 2 },
+                    { 30, 3, "Available", "Balcony 10", 2 }
                 });
 
             migrationBuilder.CreateIndex(
