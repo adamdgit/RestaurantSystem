@@ -37,5 +37,4 @@ If you are visiting as a customer, you can register an account to create reserva
 
 Home Screen
 
-![Preview 1](https://github.com/adamdgit/Spotify-Music-player/blob/master/src/screenshots/1.png)
-
+![Preview 1](https://github.com/adamdgit/RestaurantSystem/blob/master/ReatilWebSystem/readmeimg/s1.png)
