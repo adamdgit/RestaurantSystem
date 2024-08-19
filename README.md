@@ -1,6 +1,6 @@
 # Restaurant Management App
 
-This project was created using during educational studies as a final project.
+This project was created during educational studies as a final project.
 
 Steps to run project
 
