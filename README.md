@@ -35,6 +35,22 @@ If you are visiting as a customer, you can register an account to create reserva
 
 ### App Preview
 
-Home Screen
+Creating a reservation
 
 ![Preview 1](https://github.com/adamdgit/RestaurantSystem/blob/master/ReatilWebSystem/readmeimg/s1.png)
+
+Registering an account
+
+![Preview 1](https://github.com/adamdgit/RestaurantSystem/blob/master/ReatilWebSystem/readmeimg/s2.png)
+
+Showing tables assigned to a reservation
+
+![Preview 1](https://github.com/adamdgit/RestaurantSystem/blob/master/ReatilWebSystem/readmeimg/s3.png)
+
+Updating Account details
+
+![Preview 1](https://github.com/adamdgit/RestaurantSystem/blob/master/ReatilWebSystem/readmeimg/s4.png)
+
+Searching for available sittings
+
+![Preview 1](https://github.com/adamdgit/RestaurantSystem/blob/master/ReatilWebSystem/readmeimg/s5.png)
